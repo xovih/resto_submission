@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.resto_app_sora">
+    <uses-permission android:name="android.permission.INTERNET" />  
    <application
         android:label="resto_app_sora"
         android:icon="@mipmap/ic_launcher">

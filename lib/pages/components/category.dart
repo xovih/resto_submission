@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:resto_app_sora/common/constants.dart';
 import 'package:resto_app_sora/common/size_config.dart';
+import 'package:resto_app_sora/providers/resto_list_provider.dart';
 
 class Category extends StatefulWidget {
   const Category({Key? key}) : super(key: key);
@@ -24,45 +26,52 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: getProportionateScreenHeight(8),
-      ),
-      height: getProportionateScreenHeight(30),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          child: Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(
-              left: getProportionateScreenWidth(16),
-              right: index == categories.length - 1
-                  ? getProportionateScreenWidth(16)
-                  : 0,
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(16),
-            ),
-            decoration: BoxDecoration(
-              color: index == selectedIndex
-                  ? kSecondaryColor
-                  : Colors.grey.withOpacity(0.3),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              categories[index],
-              style: TextStyle(
-                  color: index == selectedIndex ? Colors.white : kTextColor),
+    return Consumer(
+      builder: (context, RestolistProvider data, widget) {
+        return Container(
+          margin: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(8),
+          ),
+          height: getProportionateScreenHeight(30),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                String c = index == 0 ? "" : categories[index];
+                data.kunciPencarian(c);
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+              child: Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(
+                  left: getProportionateScreenWidth(16),
+                  right: index == categories.length - 1
+                      ? getProportionateScreenWidth(16)
+                      : 0,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(16),
+                ),
+                decoration: BoxDecoration(
+                  color: index == selectedIndex
+                      ? kSecondaryColor
+                      : Colors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  categories[index],
+                  style: TextStyle(
+                      color:
+                          index == selectedIndex ? Colors.white : kTextColor),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
