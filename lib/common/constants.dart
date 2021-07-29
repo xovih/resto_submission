@@ -9,7 +9,7 @@ const kPrimaryGradientColor = LinearGradient(
   colors: [Color(0xFFFFA53E), Color(0xFFFF7643)],
 );
 const kPrimaryColor = Color(0xFFFFFFFF);
-const kBgColor = Color(0xFFededed);
+const kBgColor = Color(0xFFEAE7EA);
 const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);

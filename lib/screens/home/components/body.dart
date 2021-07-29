@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resto_app_sora/common/size_config.dart';
 import 'package:resto_app_sora/models/resto_model.dart';
-import 'package:resto_app_sora/pages/components/card_list.dart';
-import 'package:resto_app_sora/pages/components/category.dart';
-import 'package:resto_app_sora/pages/components/content_title.dart';
-import 'package:resto_app_sora/pages/components/search_box.dart';
+import 'package:resto_app_sora/screens/home/components/card_list.dart';
+import 'package:resto_app_sora/screens/home/components/category.dart';
+import 'package:resto_app_sora/screens/home/components/content_title.dart';
+import 'package:resto_app_sora/screens/home/components/search_box.dart';
 import 'package:resto_app_sora/providers/resto_list_provider.dart';
 import 'package:resto_app_sora/services/resto_list_service.dart';
 
@@ -59,11 +59,6 @@ class _BodyState extends State<Body> {
               var resto = state.result!.restaurants[index];
               return CardList(
                 restaurant: resto,
-                // onPressed: () => Navigator.pushNamed(
-                //   context,
-                //   ArticleDetailPage.routeName,
-                //   arguments: article,
-                // ),
               );
             },
           );
